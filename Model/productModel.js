@@ -12,7 +12,7 @@ exports.createNewProduct = (req, res) =>{
     }
 
 
-    Product.create({name, description, price,  })
+    Product.create({name, description, price, imageURL })
     .then(data => {
         res.status(201).json(data)
     })
