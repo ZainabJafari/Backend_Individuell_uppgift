@@ -66,12 +66,12 @@ exports.getProductByUser = async (req, res) => {
     res.status(200).json(prodocts)
 }
 
-exports.antalOrder = async (req, res) => {
-    const prodoct = await Product.findById(req.params.id)
-    prodoct.order++
-    await prodoct.save()
-    res.status(200).json(prodoct)
-}
+// exports.antalOrder = async (req, res) => {
+//     const prodoct = await Product.findById(req.params.id)
+//     prodoct.order++
+//     await prodoct.save()
+//     res.status(200).json(prodoct)
+// }
 
 
 exports.deleteProduct = (req, res) =>{
@@ -89,20 +89,3 @@ exports.deleteProduct = (req, res) =>{
         
     })
 }
-
-
-
-
-
-
-// exports.deleteProcuct = (req, res)=> {
-
-//    Product.findByIdAndDelete(req.params.id)
-//      .then(product =>{
-//       if(!product){
-//         return res.status(404).json({message: 'Could not find the product'})
-//     }
-
-//    res.status(200).json({id: product._id})
-
-// })

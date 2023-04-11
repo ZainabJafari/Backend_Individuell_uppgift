@@ -10,5 +10,6 @@ app.use(express.json())
 
 app.use('/api/product', require('./controllers/productControl'))
 app.use('/api/user', require('./controllers/userControl'))
+app.use('/api/order', require('./controllers/orderControl'))
 
 module.exports = app;
