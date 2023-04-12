@@ -2,9 +2,9 @@ const Product = require('../Schema/productSchema');
 
 exports.createNewProduct = (req, res) =>{
 
-    const {name, description, price, imageURL, user} = req.body;
+    const {name, description, price, imageURL} = req.body;
  
-    if(!name || !description || !price || !imageURL || !user){
+    if(!name || !description || !price || !imageURL){
         res.status(400).json({
             message: 'You need to enter all the fileds'
         })
@@ -12,7 +12,7 @@ exports.createNewProduct = (req, res) =>{
     }
 
 
-    Product.create({name, description, price, imageURL, user })
+    Product.create({name, description, price, imageURL })
     .then(data => {
         res.status(201).json(data)
     })
@@ -28,7 +28,7 @@ exports.createNewProduct = (req, res) =>{
 exports.getAllProduct = async (req, res) =>{
 
     try {
-        const products = await Product.find().populate('user')
+        const products = await Product.find()
         res.status(200).json(products)
         
     } catch (err) {
@@ -39,7 +39,7 @@ exports.getAllProduct = async (req, res) =>{
 
 exports.getProductById = async (req, res) =>{
 
-    const product = await Product.findById(req.params.id).populate('user')
+    const product = await Product.findById(req.params.id)
     
     if(!product){
         return res.status(404).json({message: 'Could not find the product'})
@@ -59,19 +59,6 @@ exports.uppdateProduct = async (req, res) =>{
     res.status(200).json(product)
 
 }
-
-exports.getProductByUser = async (req, res) => {
-    const prodocts = await Product.find({user: req.params.id})
-
-    res.status(200).json(prodocts)
-}
-
-// exports.antalOrder = async (req, res) => {
-//     const prodoct = await Product.findById(req.params.id)
-//     prodoct.order++
-//     await prodoct.save()
-//     res.status(200).json(prodoct)
-// }
 
 
 exports.deleteProduct = (req, res) =>{

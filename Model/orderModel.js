@@ -18,10 +18,23 @@ exports.createOrder = async (req, res)=> {
 }
 
 
-exports.getAllOrder = async (req, res) => {
+exports.getMyOrder = async (req, res) => {
 
-    const orders = await Order.find(req.params.userId)
+    const orders = await Order.find({user: req.userId})
 
+    if(!orders){
+        return res.status(404).json({message: 'Could not fint the orders'})
+    }
+
+    res.status(200).json(orders)
+}
+
+
+exports.getOrders = async (req, res) =>{
+    const orders = await Order.find().populate({
+        path: 'user', 
+        select: "_id email "
+    })
     if(!orders){
         return res.status(404).json({message: 'Could not fint the orders'})
     }

@@ -3,15 +3,10 @@ const productModel = require('../Model/productModel')
 const auth = require('../authentication/auth')
 
 
-router.post('/',   productModel.createNewProduct)
+router.post('/add',   productModel.createNewProduct)
 router.get('/', productModel.getAllProduct)
 
-router.get('/user/:id', productModel.getProductByUser)
-
-// router.get('/user/:id', productModel.getProductByUser)
-
 router.get('/:id', productModel.getProductById)
-
 
 router.put('/:id', productModel.uppdateProduct)
 router.delete('/:id', productModel.deleteProduct)

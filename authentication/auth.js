@@ -21,3 +21,20 @@ exports.verfyToken = (req, res, next) => {
     }
 }
 
+
+// för att logga in som admin  email: mia@.com - password: mia
+const admin = ['6434120960bc68540d2d3187']
+
+exports.checkAdmin = (req, res, next) => {
+    if(admin.includes(req.userId)){
+        next()
+    }
+    else{
+        res.status(401).json({
+            message: 'you nedd to be admin to se the  users orders'
+        })
+    }
+    
+}
+
+
